@@ -1,8 +1,12 @@
 #include "lrudef.h"
 typedef struct st_lru_node
 {
-    uint64_t nodeno;
+    //data info
+    uint64_t key; //first locatuon for lruhash module
     void* data;
+
+    //node info
+    uint32_t id;
     struct st_lru_node* prev;
     struct st_lru_node* next;
 }lru_node;
@@ -17,6 +21,8 @@ typedef struct st_lru_node
 
 #define LRUNODE_DATA(pnode)  ((pnode)->data)
 
-#define LRUNODE_NO(pnode)  ((pnode)->nodeno)
+#define LRUNODE_ID(pnode)  ((pnode)->id)
 
-#define LRUNODE_LOAD(pnode, no, data)  ((pnode)->nodeno=no;(pnode)->data=data;)
+#define LRUNODE_KEY(pnode)  ((pnode)->key)
+
+#define LRUNODE_LOAD(pnode, id, data)  ((pnode)->nodeno=id;(pnode)->data=data;)
